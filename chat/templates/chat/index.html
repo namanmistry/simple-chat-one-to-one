@@ -1,0 +1,378 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="utf-8">
+		<title>Swipe – The Simplest Chat Platform</title>
+		<meta name="description" content="#">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Bootstrap core CSS -->
+		<link href="{% static 'dist/css/lib/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+		<!-- Swipe core CSS -->
+		<link href="{% static 'dist/css/swipe.min.css' %}" type="text/css" rel="stylesheet">
+		<!-- Favicon -->
+		<link href="{% static 'dist/img/favicon.png' %}" type="image/png" rel="icon">
+	</head>
+	<body>
+		<main>
+			<div class="layout">
+				
+				<!-- Start of Sidebar -->
+				
+				<!-- Start of Add Friends -->
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="requests">
+							<div class="title">
+								<h1>Add your friends</h1>
+								<button type="button" class="btn" data-dismiss="modal" aria-label="Close"><i class="material-icons">close</i></button>
+							</div>
+							<div class="content">
+								<form>
+									<div class="form-group">
+										<label for="user">Username:</label>
+										<input type="text" class="form-control" id="user" placeholder="Add recipient..." required>
+										<div class="user" id="contact">
+											<img class="avatar-sm" src="dist/img/avatars/avatar-female-5.jpg" alt="avatar">
+											<h5>Keith Morris</h5>
+											<button class="btn"><i class="material-icons">close</i></button>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="welcome">Message:</label>
+										<textarea class="text-control" id="welcome" placeholder="Send your welcome message...">Hi Keith, I'd like to add you as a contact.</textarea>
+									</div>
+									<button type="submit" class="btn button w-100">Send Friend Request</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of Add Friends -->
+				<!-- Start of Create Chat -->
+				<div class="modal fade" id="startnewchat" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="requests">
+							<div class="title">
+								<h1>Start new chat</h1>
+								<button type="button" class="btn" data-dismiss="modal" aria-label="Close"><i class="material-icons">close</i></button>
+							</div>
+							<div class="content">
+								<form>
+									<div class="form-group">
+										<label for="participant">Recipient:</label>
+										<input type="text" class="form-control" id="participant" placeholder="Add recipient..." required>
+										<div class="user" id="recipient">
+											<img class="avatar-sm" src="dist/img/avatars/avatar-female-5.jpg" alt="avatar">
+											<h5>Keith Morris</h5>
+											<button class="btn"><i class="material-icons">close</i></button>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="topic">Topic:</label>
+										<input type="text" class="form-control" id="topic" placeholder="What's the topic?" required>
+									</div>
+									<div class="form-group">
+										<label for="message">Message:</label>
+										<textarea class="text-control"  placeholder="Send your welcome message...">Hmm, are you friendly?</textarea>
+									</div>
+									<button type="submit" class="btn button w-100">Start New Chat</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of Create Chat -->
+				<div class="main">
+					<div class="tab-content" id="nav-tabContent">
+						<!-- Start of Babble -->
+						<div class="babble tab-pane fade active show" id="list-chat" role="tabpanel" aria-labelledby="list-chat-list">
+							<!-- Start of Chat -->
+							<div class="chat" id="chat1">
+								<div class="top">
+									<div class="container">
+										<div class="col-md-12">
+											<div class="inside">
+												
+												
+												<div class="data ">
+													<h5 id="group_name">{{group_name}}</h5>
+													
+												<p id="username" hidden>{{username}}</p>
+												
+												<div class="dropdown">
+													
+													<div class="dropdown-menu dropdown-menu-right">
+														<button class="dropdown-item connect" name="1"><i class="material-icons">phone_in_talk</i>Voice Call</button>
+														<button class="dropdown-item connect" name="1"><i class="material-icons">videocam</i>Video Call</button>
+														<hr>
+														<button class="dropdown-item"><i class="material-icons">clear</i>Clear History</button>
+														<button class="dropdown-item"><i class="material-icons">block</i>Block Contact</button>
+														<button class="dropdown-item"><i class="material-icons">delete</i>Delete Contact</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="content" >
+									<div class="container" id="content">
+												
+									</div>
+								</div>
+								<div class="container">
+									<div class="col-md-12">
+										<div class="bottom">
+											<form id="message-form" class="position-relative w-100">
+												<textarea id="message"  placeholder="Start typing for reply..." rows="1"></textarea>
+												
+												<button type="submit" class="btn send"><i class="material-icons">send</i></button>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End of Chat -->
+							<!-- Start of Call -->
+							<div class="call" id="call1">
+								<div class="content">
+									<div class="container">
+										<div class="col-md-12">
+											<div class="inside">
+												<div class="panel">
+													<div class="participant">
+														
+														<span>Connecting</span>
+													</div>							
+													<div class="options">
+														<button class="btn option"><i class="material-icons md-30">mic</i></button>
+														<button class="btn option"><i class="material-icons md-30">videocam</i></button>
+														<button class="btn option call-end"><i class="material-icons md-30">call_end</i></button>
+														<button class="btn option"><i class="material-icons md-30">person_add</i></button>
+														<button class="btn option"><i class="material-icons md-30">volume_up</i></button>
+													</div>
+													<button class="btn back" name="1"><i class="material-icons md-24">chat</i></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End of Call -->
+						</div>
+						<!-- End of Babble -->
+						<!-- Start of Babble -->
+						<div class="babble tab-pane fade" id="list-empty" role="tabpanel" aria-labelledby="list-empty-list">
+							<!-- Start of Chat -->
+							<div class="chat" id="chat2">
+								<div class="top">
+									<div class="container">
+										<div class="col-md-12">
+											<div class="inside">
+												
+												<div class="status">
+													<i class="material-icons offline">fiber_manual_record</i>
+												</div>
+												<div class="data">
+													<h5><a href="#">Lean Avent</a></h5>
+													<span>Inactive</span>
+												</div>
+												<button class="btn connect d-md-block d-none" name="2"><i class="material-icons md-30">phone_in_talk</i></button>
+												<button class="btn connect d-md-block d-none" name="2"><i class="material-icons md-36">videocam</i></button>
+												<button class="btn d-md-block d-none"><i class="material-icons md-30">info</i></button>
+												<div class="dropdown">
+													<button class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-30">more_vert</i></button>
+													<div class="dropdown-menu dropdown-menu-right">
+														<button class="dropdown-item connect" name="2"><i class="material-icons">phone_in_talk</i>Voice Call</button>
+														<button class="dropdown-item connect" name="2"><i class="material-icons">videocam</i>Video Call</button>
+														<hr>
+														<button class="dropdown-item"><i class="material-icons">clear</i>Clear History</button>
+														<button class="dropdown-item"><i class="material-icons">block</i>Block Contact</button>
+														<button class="dropdown-item"><i class="material-icons">delete</i>Delete Contact</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="content empty">
+									<div class="container">
+										<div class="col-md-12">
+											<div class="no-messages">
+												<i class="material-icons md-48">forum</i>
+												<p>Seems people are shy to start the chat. Break the ice send the first message.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="container">
+									<div class="col-md-12">
+										<div class="bottom">
+											<form class="position-relative w-100">
+												<textarea class="form-control" placeholder="Start typing for reply..." rows="1"></textarea>
+												<button class="btn emoticons"><i class="material-icons">insert_emoticon</i></button>
+												<button type="submit" class="btn send"><i class="material-icons">send</i></button>
+											</form>
+											<label>
+												<input type="file">
+												<span class="btn attach d-sm-block d-none"><i class="material-icons">attach_file</i></span>
+											</label> 
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End of Chat -->
+							<!-- Start of Call -->
+							<div class="call" id="call2">
+								<div class="content">
+									<div class="container">
+										<div class="col-md-12">
+											<div class="inside">
+												<div class="panel">
+													<div class="participant">
+														
+													</div>							
+													<div class="options">
+														<button class="btn option"><i class="material-icons md-30">mic</i></button>
+														<button class="btn option"><i class="material-icons md-30">videocam</i></button>
+														<button class="btn option call-end"><i class="material-icons md-30">call_end</i></button>
+														<button class="btn option"><i class="material-icons md-30">person_add</i></button>
+														<button class="btn option"><i class="material-icons md-30">volume_up</i></button>
+													</div>
+													<button class="btn back" name="2"><i class="material-icons md-24">chat</i></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End of Call -->
+						</div>
+						<!-- End of Babble -->
+						<!-- Start of Babble -->
+						<div class="babble tab-pane fade" id="list-request" role="tabpanel" aria-labelledby="list-request-list">
+							<!-- Start of Chat -->
+							<div class="chat" id="chat3">
+								<div class="top">
+									<div class="container">
+										<div class="col-md-12">
+											
+										</div>
+									</div>
+								</div>
+								<div class="content empty">
+									<div class="container">
+										<div class="col-md-12">
+											<div class="no-messages request">
+												
+												<h5>Louis Martinez would like to add you as a contact. <span>Hi Keith, I'd like to add you as a contact.</span></h5>
+												<div class="options">
+													<button class="btn button"><i class="material-icons">check</i></button>
+													<button class="btn button"><i class="material-icons">close</i></button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="container">
+									<div class="col-md-12">
+										<div class="bottom">
+											<form class="position-relative w-100">
+												<textarea class="form-control" placeholder="Messaging unavailable" rows="1" disabled></textarea>
+												<button class="btn emoticons disabled" disabled><i class="material-icons">insert_emoticon</i></button>
+												<button class="btn send disabled" disabled><i class="material-icons">send</i></button>
+											</form>
+											<label>
+												<input type="file" disabled>
+												<span class="btn attach disabled d-sm-block d-none"><i class="material-icons">attach_file</i></span>
+											</label> 
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- End of Chat -->
+						</div>
+						<!-- End of Babble -->
+					</div>
+				</div>
+			</div> <!-- Layout -->
+		</main>
+		<!-- Bootstrap/Swipe core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="{% static 'dist/js/jquery-3.3.1.slim.min.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script>window.jQuery || document.write('<script src="dist/js/vendor/jquery-slim.min.js"><\/script>')</script>
+		<script src="{% static 'dist/js/vendor/popper.min.js' %}"></script>
+		<script src="{% static 'dist/js/swipe.min.js' %}"></script>
+		<script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+		<script>
+			function scrollToBottom(el) { el.scrollTop = el.scrollHeight; }
+			scrollToBottom(document.getElementById('content'));
+		</script>
+        <script href="https://cdnjs.cloudflare.com/ajax/libs/web-socket-js/1.0.0/web_socket.min.js"></script>
+        <script>
+        var username=""
+        var group_name=""
+        document.addEventListener('DOMContentLoaded',connectToServer())
+        function connectToServer(){
+             username= document.getElementById("username").innerHTML
+         group_name= document.getElementById("group_name").innerHTML
+       
+        
+
+        }
+         console.log(username,group_name)
+        const ws=new WebSocket(`ws://localhost:8000/ws/chat/${group_name}/`)
+
+        ws.onopen=function(event){
+            console.log("connection opnened")
+        }
+        ws.onmessage=function(event){
+            data=JSON.parse(event.data)
+			const content=document.getElementById('content')
+			if (data.username!=username){
+				content.innerHTML+=`<div class="message" >
+												
+												<div class="text-main">
+													<div class="text-group">
+														<div class="text" >
+														<p>${data.username}</p>
+															<p>${data.message}</p>
+														</div>
+													</div>
+													<span>09:46 AM</span>
+												</div>
+											</div>`
+			}
+			
+
+        }
+        const messageForm = document.getElementById('message-form')
+        messageForm.addEventListener('submit',sendMessage)
+        function sendMessage(e){
+            if (e.preventDefault){
+                    e.preventDefault();
+            }
+			const content=document.getElementById('content')
+			content.innerHTML+=`<div class="message me">
+												<div class="text-main">
+													<div class="text-group me">
+														<div class="text me">
+															<p>${document.getElementById('message').value}</p>
+														</div>
+													</div>
+													<span>11:32 AM</span>
+												</div>
+											</div>`
+			data=JSON.stringify({'username':username,'message':document.getElementById('message').value})
+            ws.send(data)
+            messageForm.reset()
+            return false;
+        }
+        
+        </script>
+	</body>
+
+</html>
