@@ -125,11 +125,9 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [os.environ.get('REDIS_URL', 6379)],
+            'hosts': [('127.0.0.1', 6379)],
         }
     }
 }
 
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'chat/staticfiles')]
-
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
