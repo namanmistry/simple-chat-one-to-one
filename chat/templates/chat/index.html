@@ -97,7 +97,7 @@
 												
 												
 												<div class="data ">
-													<h5 id="group_name">{{group_name}}</h5>
+													<h5 id="group_name">{{other_user}}</h5>
 													
 												<p id="username" hidden>{{username}}</p>
 												
@@ -324,12 +324,13 @@
 
         }
          console.log(username,group_name)
-        const ws=new WebSocket(`ws://localhost:8000/ws/chat/${group_name}/`)
+        const ws=new WebSocket(`ws://localhost:8000/ws/chat/${username}/${group_name}/`)
 
         ws.onopen=function(event){
             console.log("connection opnened")
         }
         ws.onmessage=function(event){
+			console.log(event.data)
             data=JSON.parse(event.data)
 			const content=document.getElementById('content')
 			if (data.username!=username){
